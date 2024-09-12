@@ -59,3 +59,24 @@ def daily_timeline(df):
     daily_data['Date'] = pd.to_datetime(daily_data['Date'])
     
     return daily_data
+
+# preprocessing.py
+import os
+
+def load_stopwords(file_path='stop_hinglish.txt'):
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            stopwords = file.read().splitlines()
+        return stopwords
+    else:
+        print(f"File '{file_path}' not found.")
+        return []
+
+# In text_processing.py or another script where you want to use this function:
+from preprocessing import load_stopwords
+
+stopwords = load_stopwords()
+
+if stopwords:
+    print(f"Stopwords loaded: {len(stopwords)}")
+
