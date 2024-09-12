@@ -65,18 +65,25 @@ import os
 
 def load_stopwords(file_path='stop_hinglish.txt'):
     if os.path.exists(file_path):
+        print(f"Loading stopwords from '{file_path}'...")
         with open(file_path, 'r', encoding='utf-8') as file:
             stopwords = file.read().splitlines()
         return stopwords
     else:
-        print(f"File '{file_path}' not found.")
+        print(f"File '{file_path}' not found. Please check the file path and try again.")
         return []
 
-# In text_processing.py or another script where you want to use this function:
-from preprocessing import load_stopwords
+def remove_stop_words(text):
+    stop_words = load_stopwords()  # Ensure stopwords are loaded
+    if stop_words:
+        filtered_words = [word for word in text.split() if word.lower() not in stop_words]
+        return ' '.join(filtered_words)
+    return text
 
-stopwords = load_stopwords()
-
-if stopwords:
-    print(f"Stopwords loaded: {len(stopwords)}")
+# Example of using the function to create the word cloud
+def create_wordcloud(selected_user, df):
+    combined_text = df['Message Content'].str.cat(sep=" ")
+    filtered_text = remove_stop_words(combined_text)
+    
+    # Proceed with wordcloud creation...
 
