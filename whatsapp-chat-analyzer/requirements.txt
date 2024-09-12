@@ -1,10 +1,9 @@
-urlextract==1.4.0
-pandas
-wordcloud
-emoji
-matplotlib
 streamlit
+matplotlib
 seaborn
-WordCloud
+urlextract
+wordcloud
+pandas
+emoji
 
 
