@@ -4,4 +4,6 @@ wordcloud
 emoji
 matplotlib
 streamlit
+seaborn
+
 
